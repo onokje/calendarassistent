@@ -1,0 +1,22 @@
+{
+  "name": "calendarassistant",
+  "version": "0.0.1",
+  "description": "Calendar Assistent connects to microsoft outlook and other services to show my status and next meetings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/onokje/calendarassistent.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onokje/calendarassistent/issues"
+  },
+  "homepage": "https://github.com/onokje/calendarassistent#readme",
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^1.5.2"
+  }
+}
