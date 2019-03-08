@@ -15,7 +15,16 @@ function getStatus(callback) {
   request
     .get(config.statusUrl)
     .end((err, res) => {
-      callback(err, res.body);
+      if (err || !res) {
+        callback(err, res);
+        return;
+      }
+      if (res.status === 200 || res.status === 204) {
+        callback(null, res.body);
+        return;
+      }
+      callback('invalid status', res);
+
     });
 }
 

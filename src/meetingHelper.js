@@ -31,7 +31,7 @@ function getMeetingViewVars(meetingRaw) {
     startTime : newStartDate.toLocaleTimeString(),
     endTime : newEndDate.toLocaleTimeString(),
     startsIn : diff.str,
-    location : meetingRaw.location.displayName,
+    location : String(meetingRaw.location.displayName).substr(0, 40),
     meetingAlert : alert,
     meetingIsNow : meetingIsNow,
     meetingDuration: meetingDuration.str

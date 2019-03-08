@@ -45,8 +45,9 @@ function renderMainpage(req, res) {
 
     statusHelper.getStatus((err, statusResponse) => {
 
-      if (err || !statusResponse.status) {
+      if (err || !statusResponse || !statusResponse.status) {
         renderError(err, res);
+        return;
       }
 
       let colorStatus = 'normal';
