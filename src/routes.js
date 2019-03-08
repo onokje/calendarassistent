@@ -76,6 +76,7 @@ function renderMainpage(req, res) {
       }
 
       res.render('clock', {
+        temp: 25.0,
         display_name: req.user.profile.displayName,
         email_address: req.user.profile.emails[0].address,
         customAlert: customAlert,

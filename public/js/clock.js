@@ -104,6 +104,14 @@ $(function() {
     delay: 1.2,
     ease: Power3.easeOut
   });
+  TweenMax.from(".temperature", 1.0, {
+    attr: {
+      y: 10
+    },
+    opacity: 0,
+    delay: 1.2,
+    ease: Power3.easeOut
+  });
   return TweenMax.from(".dateText", 1.0, {
     attr: {
       y: 350
