@@ -10,5 +10,5 @@ module.exports = {
     responseMode: 'query',
     scope: ['User.Read', 'Calendars.Read']
   },
-  statusUrl: 'http://127.0.0.1:3001/status'
+  statusUrl: 'http://status.onoksfiber.nl/status'
 };
