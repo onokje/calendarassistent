@@ -1,0 +1,29 @@
+<h1>Hello world!</h1>
+
+<div>
+    Username: {{display_name}}<br>
+    Email: {{email_address}}
+</div>
+<div>
+    {{# if nextMeeting.meeting}}
+        {{# if nextMeeting.meetingIsNow}}
+            <h2>Ik zit nu in een meeting!</h2>
+            Deze meeting duurt tot: {{nextMeeting.endTime}}
+            Locatie: {{nextMeeting.location}}<br>
+        {{else}}
+            Next meeting: {{nextMeeting.subject}}<br>
+            Start: {{nextMeeting.startTime}} (over {{nextMeeting.startsIn}})<br>
+            Hele dag: {{nextMeeting.isAllDay}}<br>
+            Duur: {{nextMeeting.meetingDuration}}<br>
+            Locatie: {{nextMeeting.location}}<br>
+            {{# if nextMeeting.alert}}
+                <h1>Alert: Next meeting starts in less then 5 minutes</h1>
+
+            {{/if}}
+        {{/if}}
+    {{else}}
+        Geen meetings gepland de komende 24 uur :)
+
+    {{/if}}
+
+</div>
