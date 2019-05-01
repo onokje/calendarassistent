@@ -25,7 +25,7 @@ function getCalendar(accessToken, callback) {
   const tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
   request
-    .get(`https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=${today.toISOString()}&enddatetime=${tomorrow.toISOString()}&$top=1`)
+    .get(`https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=${today.toISOString()}&enddatetime=${tomorrow.toISOString()}&$top=1&$orderby=start/dateTime`)
     .set('Authorization', 'Bearer ' + accessToken)
     .end((err, res) => {
       // Returns 200 OK and the photo in the body. If no photo exists, returns 404 Not Found.

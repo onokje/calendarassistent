@@ -24,8 +24,8 @@ router.get('/clock', (req, res) => {
       colorStatus: 'normal', // one of: 'normal', 'alert', 'warn'
       subject : 'test meeting 2',
       isAllDay : false,
-      startTime : (new Date()).toLocaleTimeString(),
-      endTime : (new Date()).toLocaleTimeString(),
+      startTime : (new Date()).toLocaleTimeString('nl-NL'),
+      endTime : (new Date()).toLocaleTimeString('nl-NL'),
       startsIn : '1 uur, 10 minuten',
       location : 'Magazine Mansion',
       meetingAlert : false,

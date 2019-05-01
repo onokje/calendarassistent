@@ -37,45 +37,45 @@
 
     <!-- Background objects -->
     <rect x="0" y="0" width="100%" height="100%" style="stroke: #000000; fill: url(#dotPattern);" />
-    <ellipse cx="600" cy="240" rx="300" ry="300" fill="url(#backHoleBelowClock)"/>
-    <ellipse cx="600" cy="240" rx="700" ry="700" fill="url(#blackVignette)"/>
+    <ellipse cx="750" cy="240" rx="300" ry="300" fill="url(#backHoleBelowClock)"/>
+    <ellipse cx="750" cy="240" rx="900" ry="900" fill="url(#blackVignette)"/>
 
     <!-- Clock objects -->
-    <circle class="clockCircle hour" cx="600" cy="240" r="150" stroke-width="6" />
+    <circle class="clockCircle hour" cx="750" cy="240" r="150" stroke-width="6" />
     <path id="arcHour" class="clockArc hour" stroke-width="6" stroke-linecap="round" filter="url(#glow)" />
     <circle class="clockDot hour" r="8" filter="url(#glow)" />
 
-    <circle class="clockCircle minute" cx="600" cy="240" r="170" stroke-width="3" />
+    <circle class="clockCircle minute" cx="750" cy="240" r="170" stroke-width="3" />
     <path id="arcMinute" class="clockArc minute" stroke-width="3" stroke-linecap="round" filter="url(#glow)" />
     <circle class="clockDot minute" r="5" filter="url(#glow)" />
 
     <!-- Caption objects -->
-    <text id="time" class="caption timeText" x="600" y="240" stroke-width="0" text-anchor="middle" alignment-baseline="middle"  filter="url(#shadow)"></text>
+    <text id="time" class="caption timeText" x="750" y="240" stroke-width="0" text-anchor="middle" alignment-baseline="middle"  filter="url(#shadow)"></text>
 
-    <text id="day" class="caption dayText" x="400" y="210" stroke-width="0" text-anchor="end" alignment-baseline="middle"  filter="url(#shadow)"></text>
-    <text id="date" class="caption dateText" x="400" y="250" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)"></text>
+    <text id="day" class="caption dayText" x="550" y="210" stroke-width="0" text-anchor="end" alignment-baseline="middle"  filter="url(#shadow)"></text>
+    <text id="date" class="caption dateText" x="550" y="250" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)"></text>
     {{# if nextMeeting.meeting}}
         {{# if nextMeeting.meetingIsNow}}
-            <text id="nextMeeting1" class="caption nextMeetingText1" x="400" y="300" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">Ik zit nu in een meeting!</text>
-            <text id="nextMeeting2" class="caption nextMeetingText2" x="400" y="325" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">Deze meeting duurt tot: {{nextMeeting.endTime}}</text>
-            <text id="nextMeeting3" class="caption nextMeetingText3" x="400" y="350" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">{{nextMeeting.location}}</text>
+            <text id="nextMeeting1" class="caption nextMeetingText1" x="550" y="300" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">Ik zit nu in een meeting!</text>
+            <text id="nextMeeting2" class="caption nextMeetingText2" x="550" y="325" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">Deze meeting duurt tot: {{nextMeeting.endTime}}</text>
+            <text id="nextMeeting3" class="caption nextMeetingText3" x="550" y="350" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">{{nextMeeting.location}}</text>
         {{else}}
-            <text id="nextMeeting1" class="caption nextMeetingText1" x="400" y="300" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">Volgende meeting:</text>
-            <text id="nextMeeting2" class="caption nextMeetingText2" x="400" y="325" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">{{nextMeeting.startTime}} (over {{nextMeeting.startsIn}})</text>
-            <text id="nextMeeting3" class="caption nextMeetingText3" x="400" y="350" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">{{nextMeeting.location}}</text>
+            <text id="nextMeeting1" class="caption nextMeetingText1" x="550" y="300" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">Volgende meeting:</text>
+            <text id="nextMeeting2" class="caption nextMeetingText2" x="550" y="325" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">{{nextMeeting.startTime}} (over {{nextMeeting.startsIn}})</text>
+            <text id="nextMeeting3" class="caption nextMeetingText3" x="550" y="350" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">{{nextMeeting.location}}</text>
 
             {{# if nextMeeting.meetingAlert }}
                 <text id="nextMeetingAlert" class="caption nextMeetingAlert" x="50" y="430" stroke-width="0" text-anchor="start" alignment-baseline="middle" filter="url(#shadow)">LET OP: Volgende meeting start binnen 5 minuten!</text>
             {{/if}}
         {{/if}}
     {{else}}
-        <text id="nextMeeting1" class="caption nextMeetingText1" x="400" y="290" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">Geen meetings gepland de komende 24 uur :)</text>
+        <text id="nextMeeting1" class="caption nextMeetingText1" x="550" y="290" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">Geen meetings gepland de komende 24 uur :)</text>
     {{/if}}
 
     {{# if customAlert }}
         <text id="statusAlert" class="caption statusAlert" x="50" y="50" stroke-width="0" text-anchor="start" alignment-baseline="middle" filter="url(#shadow)">{{customAlert}}</text>
     {{/if}}
 
-    <text id="temperature" class="caption temperature" x="750" y="50" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">{{temp}}&deg; C</text>
+    <text id="temperature" class="caption temperature" x="1000" y="50" stroke-width="0" text-anchor="end" alignment-baseline="middle" filter="url(#shadow)">{{temp}}&deg; C</text>
 
 </svg>
