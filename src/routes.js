@@ -50,9 +50,6 @@ function renderMainpage(req, res) {
 
       sensor.read(22, 14, function(err, temperature, humidity) {
           if (!err) {
-              console.log('temp: ' + temperature.toFixed(1) + '°C, ' +
-                  'humidity: ' + humidity.toFixed(1) + '%'
-              );
               let colorStatus = 'normal';
               let customAlert = null;
 
