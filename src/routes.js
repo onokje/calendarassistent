@@ -5,7 +5,7 @@ const router = express.Router();
 const passport = require('passport');
 const graphHelper = require('./graphHelper.js');
 const statusHelper = require('./statusHelper');
-
+const sensor = require('node-dht-sensor');
 
 // Get the home page.
 router.get('/', (req, res) => {
@@ -38,51 +38,62 @@ router.get('/clock', (req, res) => {
 function renderMainpage(req, res) {
 
   graphHelper.getCalendar(req.user.accessToken, (err, calendarResponse) => {
-
     if (err) {
       renderError(err, res);
     }
 
     statusHelper.getStatus((err, statusResponse) => {
-
       if (err || !statusResponse || !statusResponse.status) {
         renderError(err, res);
         return;
       }
 
-      let colorStatus = 'normal';
-      let customAlert = null;
+      sensor.read(22, 14, function(err, temperature, humidity) {
+          if (!err) {
+              console.log('temp: ' + temperature.toFixed(1) + '°C, ' +
+                  'humidity: ' + humidity.toFixed(1) + '%'
+              );
+              let colorStatus = 'normal';
+              let customAlert = null;
 
-      if (statusResponse.status === 'dnd') {
-        colorStatus = 'warn';
-        customAlert = 'NIET STOREN A.U.B.';
-      }
+              if (statusResponse.status === 'dnd') {
+                  colorStatus = 'warn';
+                  customAlert = 'NIET STOREN A.U.B.';
+              }
 
-      if (statusResponse.status === 'workHome') {
-        colorStatus = 'warn';
-        customAlert = 'Ik werk thuis vandaag, slack gerust!';
-      }
+              if (statusResponse.status === 'workHome') {
+                  colorStatus = 'warn';
+                  customAlert = 'Ik werk thuis vandaag, slack gerust!';
+              }
 
-      if (statusResponse.status === 'off') {
-        colorStatus = 'alert';
-        customAlert = 'Ik ben niet aan het werk momenteel.';
-      }
+              if (statusResponse.status === 'off') {
+                  colorStatus = 'alert';
+                  customAlert = 'Ik ben niet aan het werk momenteel.';
+              }
 
-      const nextMeeting = calendarResponse.value[0];
-      const meetingVars = !calendarResponse.value.length ? {meeting: false} : getMeetingViewVars(nextMeeting);
+              const nextMeeting = calendarResponse.value[0];
+              const meetingVars = !calendarResponse.value.length ? {meeting: false} : getMeetingViewVars(nextMeeting);
 
-      if (meetingVars.meetingAlert) {
-        colorStatus = 'alert';
-      }
+              if (meetingVars.meetingAlert) {
+                  colorStatus = 'alert';
+              }
 
-      res.render('clock', {
-        temp: 25.0,
-        display_name: req.user.profile.displayName,
-        email_address: req.user.profile.emails[0].address,
-        customAlert: customAlert,
-        colorStatus: colorStatus,
-        nextMeeting: meetingVars
+              res.render('clock', {
+                  temp: temperature.toFixed(1),
+                  hum: humidity.toFixed(1),
+                  display_name: req.user.profile.displayName,
+                  email_address: req.user.profile.emails[0].address,
+                  customAlert: customAlert,
+                  colorStatus: colorStatus,
+                  nextMeeting: meetingVars
+              });
+
+          } else {
+              renderError('temp sensor error');
+          }
       });
+
+
     });
 
   });
