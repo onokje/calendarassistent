@@ -6,6 +6,7 @@ const passport = require('passport');
 const graphHelper = require('./graphHelper.js');
 const statusHelper = require('./statusHelper');
 const sensor = require('node-dht-sensor');
+const request = require('request');
 
 // Get the home page.
 router.get('/', (req, res) => {
@@ -51,20 +52,24 @@ function renderMainpage(req, res) {
       sensor.read(22, 14, function(err, temperature, humidity) {
           if (!err) {
               let colorStatus = 'normal';
+              let ledColor = '0,100,200';
               let customAlert = null;
 
               if (statusResponse.status === 'dnd') {
                   colorStatus = 'warn';
+                  ledColor = '200,100,100';
                   customAlert = 'NIET STOREN A.U.B.';
               }
 
               if (statusResponse.status === 'workHome') {
                   colorStatus = 'warn';
+                  ledColor = '200,100,100';
                   customAlert = 'Ik werk thuis vandaag, slack gerust!';
               }
 
               if (statusResponse.status === 'off') {
                   colorStatus = 'alert';
+                  ledColor = '255,0,0';
                   customAlert = 'Ik ben niet aan het werk momenteel.';
               }
 
@@ -73,7 +78,14 @@ function renderMainpage(req, res) {
 
               if (meetingVars.meetingAlert) {
                   colorStatus = 'alert';
+                  ledColor = '255,0,0';
               }
+
+              request({
+                  uri: 'http://localhost:1880/led',
+                  method: 'POST',
+                  json: {'color': ledColor}
+              });
 
               res.render('clock', {
                   temp: temperature.toFixed(1),
