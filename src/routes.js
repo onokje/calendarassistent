@@ -52,24 +52,24 @@ function renderMainpage(req, res) {
       sensor.read(22, 14, function(err, temperature, humidity) {
           if (!err) {
               let colorStatus = 'normal';
-              let ledColor = '0,100,200';
+              let ledColor = '0,60,100';
               let customAlert = null;
 
               if (statusResponse.status === 'dnd') {
                   colorStatus = 'warn';
-                  ledColor = '200,100,100';
+                  ledColor = '100,50,0';
                   customAlert = 'NIET STOREN A.U.B.';
               }
 
               if (statusResponse.status === 'workHome') {
                   colorStatus = 'warn';
-                  ledColor = '200,100,100';
+                  ledColor = '100,50,0';
                   customAlert = 'Ik werk thuis vandaag, slack gerust!';
               }
 
               if (statusResponse.status === 'off') {
                   colorStatus = 'alert';
-                  ledColor = '255,0,0';
+                  ledColor = '60,50,10';
                   customAlert = 'Ik ben niet aan het werk momenteel.';
               }
 
@@ -78,7 +78,7 @@ function renderMainpage(req, res) {
 
               if (meetingVars.meetingAlert) {
                   colorStatus = 'alert';
-                  ledColor = '255,0,0';
+                  ledColor = '150,0,0';
               }
 
               request({
