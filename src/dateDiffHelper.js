@@ -11,7 +11,7 @@ function dateDiffString(date1, date2) {
   if (diffHrs > 0) {
     timestring += diffHrs + ' uur, ';
   }
-  timestring += diffMins + (diffMins === 1 ? 'minuut' : ' minuten');
+  timestring += diffMins + (diffMins === 1 ? ' minuut' : ' minuten');
 
   return {
     d: diffDays,
