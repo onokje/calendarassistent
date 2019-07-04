@@ -29,7 +29,7 @@ function getCalendar(accessToken, callback) {
     .set('Authorization', 'Bearer ' + accessToken)
     .end((err, res) => {
       // Returns 200 OK and the photo in the body. If no photo exists, returns 404 Not Found.
-      callback(err, res.body);
+      callback(err, res);
     });
 }
 

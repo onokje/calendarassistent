@@ -41,6 +41,12 @@ router.get('/test', (req, res) => {
 function renderMainpage(req, res) {
 
     graphHelper.getCalendar(req.user.accessToken, (err, calendarResponse) => {
+        if ((err && hasAccessTokenExpired(err)) || !calendarResponse || !calendarResponse.body || !calendarResponse.body.value) {
+            res.redirect('/login');
+            return;
+        }
+        calendarResponse = calendarResponse.body;
+
         if (err) {
             renderError(err, res);
         }
